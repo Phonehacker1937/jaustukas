@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kontaktų Forma</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            margin: 20px;
+        }
+        .error {
+            color: red;
+            font-size: 0.9em;
+        }
+        .result {
+            margin-top: 20px;
+        }
+        .rating-average {
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+        <h3>Klausimai:</h3>
+        <label for="question1">Kaip vertinate mūsų paslaugų kokybę?</label><br>
+        <input type="number" id="question1" min="1" max="10" required><br><br>
+
+        <label for="question2">Kaip greitai buvo suteiktos paslaugos?</label><br>
+        <input type="number" id="question2" min="1" max="10" ><br><br>
+
+        <label for="question3">Ar rekomenduotumėte mus kitiems?</label><br>
+        <input type="number" id="question3" min="1" max="10" ><br><br>
+
+        <label for="question4">Kaip vertinate mūsų svetainės patogumą?</label><br>
+        <input type="number" id="question4" min="1" max="10" ><br><br>
+
+        <label for="question5">Kaip tiksliai buvo atsakyta į jūsų klausimus?</label><br>
+        <input type="number" id="question5" min="1" max="10" ><br><br>
+
+        <button type="button" id="submitButton">Pateikti</button>
+    </form>
+
+    <script>
+        document.getElementById('submitButton').addEventListener('click', function() {
+
+
+            const question1 = parseInt(document.getElementById('question1').value);
+            const question2 = parseInt(document.getElementById('question2').value);
+            const question3 = parseInt(document.getElementById('question3').value);
+            const question4 = parseInt(document.getElementById('question4').value);
+            const question5 = parseInt(document.getElementById('question5').value);
+
+            const average = (
+                question1 + question2 + question3 + question4 + question5
+            ) / 5;
+
+        });
+    </script>
+    <script src="js/script.js"></script>
+
+</body>
+</html>
