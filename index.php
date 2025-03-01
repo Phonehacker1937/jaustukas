@@ -90,7 +90,6 @@ $result = $conn->query($sql);
             </section>
             <section>
                 <h2>laikas</h2>
-                <?php while($row = $result->fetch_assoc()): ?>
                 <tr>
                     <ul><?= htmlspecialchars($row["data"]) ?></ul>
                 </tr>
