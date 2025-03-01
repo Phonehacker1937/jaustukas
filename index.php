@@ -1,22 +1,18 @@
 <?php
-// Database connection parameters
+
 $servername = "localhost";
 $username = "admin";
 $password = "qwertyuiop";
 $dbname = "jaustukas";
 
-// Create connection
 $conn = new mysqli($servername, $username, $password, $dbname);
 
-// Check connection
 if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
 
-// Set character set to UTF-8
 $conn->set_charset("utf8mb4");
 
-// Query to get the 10 latest rows from the table
 $sql = "SELECT * FROM atsiliepimai ORDER BY data DESC LIMIT 10";
 $result = $conn->query($sql);
 ?>
@@ -89,6 +85,8 @@ $result = $conn->query($sql);
                 </tr>
                 <?php endwhile; ?>
             </section>
+            <?php $result->data_seek(0); ?> 
+            <!--   duomenų bazę pradeda nuo nulio   -->
             <section>
                 <h2>laikas</h2>
                 <?php while($row = $result->fetch_assoc()): ?>
@@ -102,7 +100,6 @@ $result = $conn->query($sql);
     <p class="no-data">No feedback entries found.</p>
     <?php endif; ?>
     <?php
-    // Close the database connection
     $conn->close();
     ?>
     <footer id="galas">
