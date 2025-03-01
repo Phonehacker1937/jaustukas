@@ -81,15 +81,26 @@ $result = $conn->query($sql);
     </section>
     <?php if ($result && $result->num_rows > 0): ?>
         <section id="atsiliepimu informcija" class="grid-container">
-            <h2>atsiliepimai ir laikas</h2>
+            <h2>atsiliepimai</h2>
             <ul>
                 <?php 
+                // Reset the result pointer to the beginning
+                $result->data_seek(0);
+                while($row = $result->fetch_assoc()): ?>
+                    <li><?= htmlspecialchars($row["ivertinimas"]) ?></li>
+                <?php endwhile; ?>
+            </ul>
+        </section>
+        <section>
+            <h2>laikas</h2>
+            <ul>
+                <?php 
+                // Reset the result pointer again
                 $result->data_seek(0);
                 while($row = $result->fetch_assoc()): ?>
                     <li>
-                        <div>Įvertinimas: <?= htmlspecialchars($row["ivertinimas"]) ?></div>
-                        <div>Data: <?= htmlspecialchars($row["data"]) ?></div>
-                        <div>Komentaras: <?= $row["komentaras"] ? htmlspecialchars($row["komentaras"]) : "<em>No comment</em>" ?></div>
+                        <?= htmlspecialchars($row["data"]) ?>
+                        <div><?= $row["komentaras"] ? htmlspecialchars($row["komentaras"]) : "<em>No comment</em>" ?></div>
                     </li>
                 <?php endwhile; ?>
             </ul>
