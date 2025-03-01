@@ -94,7 +94,6 @@ $result = $conn->query($sql);
                 <?php while($row = $result->fetch_assoc()): ?>
                 <tr>
                     <ul><?= htmlspecialchars($row["data"]) ?></ul>
-                    <ul><?= $row["komentaras"] ? htmlspecialchars($row["komentaras"]) : "<em>No comment</em>" ?></ul>
                 </tr>
                 <?php endwhile; ?>
             </section>
