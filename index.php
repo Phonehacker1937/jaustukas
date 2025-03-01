@@ -21,83 +21,111 @@ $sql = "SELECT * FROM atsiliepimai ORDER BY data DESC LIMIT 10";
 $result = $conn->query($sql);
 ?>
 
+<!--   Arijus Dambrauskas EIF-23   -->
 <!DOCTYPE html>
-<html lang="en">
+<html lang="lt">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Latest Feedback Entries</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 20px;
-        }
-        h1 {
-            color: #333;
-            text-align: center;
-        }
-        .feedback-list {
-            width: 100%;
-            border-collapse: collapse;
-            margin-top: 20px;
-        }
-        .feedback-list th, .feedback-list td {
-            border: 1px solid #ddd;
-            padding: 12px;
-            text-align: left;
-        }
-        .feedback-list th {
-            background-color: #f2f2f2;
-            font-weight: bold;
-        }
-        .feedback-list tr:nth-child(even) {
-            background-color: #f9f9f9;
-        }
-        .feedback-list tr:hover {
-            background-color: #f1f1f1;
-        }
-        .no-data {
-            text-align: center;
-            padding: 20px;
-            color: #777;
-        }
-    </style>
+    <meta name="description" content="atsiliepimai">
+    <meta name="author" content="Arijus Dambrauskis">
+    <title>jaustukas</title>
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <h1>Latest Feedback Entries</h1>
-    
+    <header id="virsutine linija" class="top-strip">
+        <div class="logo">
+            <a href="#">
+                <img src="C:\Users\dell\Documents\GitHub\jaustukas\vaizdai\logo.jpg"
+                    alt="Icon">
+            </a>
+        </div>
+        <nav class="social-links">
+            <a href="https://facebook.com" target="_blank" title="Facebook">
+                <img src="https://cdn-icons-png.flaticon.com/512/733/733547.png" alt="Facebook" width="30">
+            </a>
+            <a href="https://instagram.com" target="_blank" title="Instagram">
+                <img src="https://cdn-icons-png.flaticon.com/512/2111/2111463.png" alt="Instagram" width="30">
+            </a>
+            <a href="https://twitter.com" target="_blank" title="Twitter">
+                <img src="https://cdn-icons-png.flaticon.com/512/733/733579.png" alt="Twitter" width="30">
+            </a>
+        </nav>
+    </header>
+    <header class="content" id="atstumo palaikymas">
+    </header>
+    <div id="clock">--:--:--</div>
+    <script>
+        function updateClock() {
+            const now = new Date();
+
+            let hours = now.getHours().toString().padStart(2, '0');
+            let minutes = now.getMinutes().toString().padStart(2, '0');
+            let seconds = now.getSeconds().toString().padStart(2, '0');
+
+            const timeString = `${hours}:${minutes}:${seconds}`;
+
+            document.getElementById("clock").textContent = timeString;
+        }
+
+        setInterval(updateClock, 1000);
+
+        updateClock();
+    </script>
+    <section id="apie">
+        <h1>Apie muziejų</h1>
+        <p>svetainės aprašymas</p>
+    </section>
+    <section style="text-align: center;" id="theme-button">
+        <button  id="toggle-theme" class="theme-button">Šviesus/Tamsus režimas</button>
+    </section>
     <?php if ($result && $result->num_rows > 0): ?>
-        <table class="feedback-list">
-            <thead>
-                <tr>
-                    <th>Rating ID</th>
-                    <th>Rating</th>
-                    <th>Location</th>
-                    <th>Date</th>
-                    <th>Comments</th>
-                </tr>
-            </thead>
-            <tbody>
+        <section id="atsiliepimu informcija" class="grid-container">
+            <section>
+                <h2>atsiliepimai</h2>
                 <?php while($row = $result->fetch_assoc()): ?>
                 <tr>
-                    <td><?= htmlspecialchars($row["ivertinimo_numeris"]) ?></td>
-                    <td><?= htmlspecialchars($row["ivertinimas"]) ?></td>
-                    <td><?= htmlspecialchars($row["vieta"]) ?></td>
-                    <td><?= htmlspecialchars($row["data"]) ?></td>
-                    <td><?= $row["komentaras"] ? htmlspecialchars($row["komentaras"]) : "<em>No comment</em>" ?></td>
+                    <ul><?= htmlspecialchars($row["ivertinimas"]) ?></ul>
                 </tr>
                 <?php endwhile; ?>
-            </tbody>
-        </table>
+            </section>
+            <section>
+                <h2>laikas</h2>
+                <?php while($row = $result->fetch_assoc()): ?>
+                <tr>
+                    <ul><?= htmlspecialchars($row["data"]) ?></ul>
+                    <ul><?= $row["komentaras"] ? htmlspecialchars($row["komentaras"]) : "<em>No comment</em>" ?></ul>
+                </tr>
+                <?php endwhile; ?>
+            </section>
+        </section>
     <?php else: ?>
-        <p class="no-data">No feedback entries found.</p>
+    <p class="no-data">No feedback entries found.</p>
     <?php endif; ?>
-    
     <?php
     // Close the database connection
     $conn->close();
     ?>
+    <footer id="galas">
+        <nav class="social-links" style="text-align: center;">
+            <a href="https://facebook.com" target="_blank" title="Facebook" style="padding-left: 10px;">
+                <img src="https://cdn-icons-png.flaticon.com/512/733/733547.png" alt="Facebook" width="30">
+            </a>
+            <a href="https://instagram.com" target="_blank" title="Instagram">
+                <img src="https://cdn-icons-png.flaticon.com/512/2111/2111463.png" alt="Instagram" width="30">
+            </a>
+            <a href="https://twitter.com" target="_blank" title="Twitter">
+                <img src="https://cdn-icons-png.flaticon.com/512/733/733579.png" alt="Twitter" width="30">
+            </a>
+        </nav>
+        <p>&copy; 2024 Arijus Dambrauskas. Visos teisės saugomos. <button onclick="window.location.href='forma.html';">forma</button>
+        </p>    
+    </footer>
+    <script src="js/script.js"></script>
+        
+
+    
+    
+
 </body>
-</html>
+
