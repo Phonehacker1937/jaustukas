@@ -87,7 +87,6 @@ $result = $conn->query($sql);
                 <tr>
                     <ul><?= htmlspecialchars($row["ivertinimas"]) ?></ul>
                 </tr>
-                <?php endwhile; ?>
             </section>
             <section>
                 <h2>laikas</h2>
