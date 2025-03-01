@@ -81,20 +81,18 @@ $result = $conn->query($sql);
     </section>
     <?php if ($result && $result->num_rows > 0): ?>
         <section id="atsiliepimu informcija" class="grid-container">
-            <section>
-                <h2>atsiliepimai</h2>
-                <?php while($row = $result->fetch_assoc()): ?>
-                <tr>
-                    <ul><?= htmlspecialchars($row["ivertinimas"]) ?></ul>
-                </tr>
-            </section>
-            <section>
-                <h2>laikas</h2>
-                <tr>
-                    <ul><?= htmlspecialchars($row["data"]) ?></ul>
-                </tr>
+            <h2>atsiliepimai ir laikas</h2>
+            <ul>
+                <?php 
+                $result->data_seek(0);
+                while($row = $result->fetch_assoc()): ?>
+                    <li>
+                        <div>Įvertinimas: <?= htmlspecialchars($row["ivertinimas"]) ?></div>
+                        <div>Data: <?= htmlspecialchars($row["data"]) ?></div>
+                        <div>Komentaras: <?= $row["komentaras"] ? htmlspecialchars($row["komentaras"]) : "<em>No comment</em>" ?></div>
+                    </li>
                 <?php endwhile; ?>
-            </section>
+            </ul>
         </section>
     <?php else: ?>
     <p class="no-data">No feedback entries found.</p>
