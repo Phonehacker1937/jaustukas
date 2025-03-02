@@ -32,7 +32,7 @@ $result = $conn->query($sql);
     <header id="virsutine linija" class="top-strip">
         <div class="logo">
             <a href="#">
-                <img src="C:\Users\dell\Documents\GitHub\jaustukas\vaizdai\logo.jpg"
+                <img src="jaustukas\vaizdai\logo.jpg"
                     alt="Icon">
             </a>
         </div>
@@ -114,7 +114,7 @@ $result = $conn->query($sql);
                 <img src="https://cdn-icons-png.flaticon.com/512/733/733579.png" alt="Twitter" width="30">
             </a>
         </nav>
-        <p>&copy; 2024 Arijus Dambrauskas. Visos teisės saugomos. <button onclick="window.location.href='forma.html';">forma</button>
+        <p>&copy; 2024 Arijus Dambrauskas. Visos teisės saugomos. <button onclick="window.location.href='jaustukas/forma.html';">forma</button>
         </p>    
     </footer>
     <script src="js/script.js"></script>
